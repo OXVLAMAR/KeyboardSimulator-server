@@ -1,6 +1,6 @@
 package com.simulator.services;
 
-import com.simulator.modeld.UserKS;
+import com.simulator.model.UserKS;
 
 import java.util.List;
 
@@ -16,6 +16,10 @@ public interface UserService {
 
     UserKS saveOrUpdate(UserKS userKS);
 
-    }
+    boolean equals(UserKS us,List<UserKS> users);
+
+    boolean equals(String log,String pass,List<UserKS> users);
+
+}
 
 

@@ -1,5 +1,6 @@
 package com.simulator.services;
-import com.simulator.modeld.UserKS;
+
+import com.simulator.model.UserKS;
 import com.simulator.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,12 +27,37 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean equals(UserKS us,List<UserKS> users) {
+        boolean flag = true;
+        for (int i = 0; i < users.size(); i++) {
+           if (us.getLogin() == users.get(i).getLogin()) {
+               flag = false;
+               return flag;
+           }
+        }
+        return flag;
+    }
+
+    @Override
+    public boolean equals(String log,String pass,List<UserKS> users) {
+        boolean flag = false;
+        for (int i = 0; i < users.size(); i++) {
+            if ((log == users.get(i).getLogin())&&(pass == users.get(i).getPassword())) {
+                flag = true;
+                return flag;
+            }
+        }
+        return flag;
+    }
+
+    @Override
     public UserKS getById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 
     @Override
     public UserKS create(UserKS userKS) {
+
         return userRepository.save(userKS);
     }
 
@@ -40,9 +66,9 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
         return null;
     }
+
     @Override
-    public UserKS saveOrUpdate(UserKS userKS)
-    {
+    public UserKS saveOrUpdate(UserKS userKS) {
         return userRepository.save(userKS);
     }
 

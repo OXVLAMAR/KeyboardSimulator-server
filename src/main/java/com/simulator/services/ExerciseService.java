@@ -1,7 +1,7 @@
 package com.simulator.services;
 
 
-import com.simulator.modeld.Exercise;
+import com.simulator.model.Exercise;
 
 import java.util.List;
 
@@ -14,7 +14,10 @@ public interface ExerciseService {
 
     Exercise create(Exercise exercise);
 
+    Exercise generate(Exercise exercise);
+
     Exercise delete(Long id);
 
     Exercise saveOrUpdate(Exercise exercise);
+
 }

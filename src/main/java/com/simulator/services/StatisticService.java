@@ -1,5 +1,6 @@
 package com.simulator.services;
-import com.simulator.modeld.Statistic;
+
+import com.simulator.model.Statistic;
 
 import java.util.List;
 

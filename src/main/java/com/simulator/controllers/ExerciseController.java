@@ -1,6 +1,6 @@
 package com.simulator.controllers;
 
-import com.simulator.modeld.Exercise;
+import com.simulator.model.Exercise;
 import com.simulator.services.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,32 +23,34 @@ public class ExerciseController {
 
 
     @GetMapping
-    public List<Exercise> listExercise(){
+    public List<Exercise> listExercise() {
         return exerciseService.listAll();
     }
 
-    @GetMapping(path ="/{id}")
-    public Exercise getExercise(@PathVariable("id") Long id){
-        return  exerciseService.getById(Long.valueOf(id));
+    @GetMapping(path = "/{id}")
+    public Exercise getExercise(@PathVariable("id") Long id) {
+        return exerciseService.getById(Long.valueOf(id));
     }
 
 
     @PutMapping
-    public Exercise saveOrUpdate(@RequestBody Exercise exercise)
-            {
+    public Exercise saveOrUpdate(@RequestBody Exercise exercise) {
 
-              return  exerciseService.saveOrUpdate(exercise);
+        return exerciseService.saveOrUpdate(exercise);
     }
 
-    @PostMapping
-    public Exercise newExercise(@RequestBody Exercise exercise)
-    {
+    @PostMapping (path = {"/newExercise"})
+    public Exercise newExercise(@RequestBody Exercise exercise) {
         return exerciseService.create(exercise);
     }
 
+    @PostMapping (path = {"/generate"})
+    public Exercise generateExercise(@RequestBody Exercise exercise) {
+        return exerciseService.generate(exercise);
+    }
 
-    @DeleteMapping(path ="/{id}")
-    public Exercise delete(@PathVariable("id") Long id){
+    @DeleteMapping(path = "/{id}")
+    public Exercise delete(@PathVariable("id") Long id) {
         return exerciseService.delete(Long.valueOf(id));
     }
 }

@@ -1,7 +1,7 @@
 package com.simulator.controllers;
 
 
-import com.simulator.modeld.Statistic;
+import com.simulator.model.Statistic;
 import com.simulator.services.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,30 +22,28 @@ public class StatisticController {
 
 
     @GetMapping
-    public List<Statistic> listStatistic(){
+    public List<Statistic> listStatistic() {
         return statisticService.listAll();
     }
 
-    @GetMapping(path ="/{id}")
-    public Statistic getStatistic(@PathVariable("id") Long id){
-        return  statisticService.getById(Long.valueOf(id));
+    @GetMapping(path = "/{id}")
+    public Statistic getStatistic(@PathVariable("id") Long id) {
+        return statisticService.getById(Long.valueOf(id));
     }
 
 
     @PutMapping
-    public Statistic saveOrUpdate(@RequestBody Statistic statistic)
-    {
-        return  statisticService.saveOrUpdate(statistic);
+    public Statistic saveOrUpdate(@RequestBody Statistic statistic) {
+        return statisticService.saveOrUpdate(statistic);
     }
 
     @PostMapping
-    public Statistic newStatistic(@RequestBody Statistic statistic)
-    {
+    public Statistic newStatistic(@RequestBody Statistic statistic) {
         return statisticService.create(statistic);
     }
 
-    @DeleteMapping(path ="/{id}")
-    public Statistic delete(@PathVariable("id") Long id){
+    @DeleteMapping(path = "/{id}")
+    public Statistic delete(@PathVariable("id") Long id) {
         return statisticService.delete(Long.valueOf(id));
     }
 
