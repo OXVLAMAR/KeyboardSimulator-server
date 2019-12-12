@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     public Long equalsUS(String log,String pass,List<UserKS> users) {
 
         for (int i = 0; i < users.size(); i++) {
-            if ((log == users.get(i).getLogin())&&(pass == users.get(i).getPassword())) {
+            if ((log.equals(users.get(i).getLogin()))&&(pass.equals(users.get(i).getPassword()))) {
                 return users.get(i).getId();
             }
         }
@@ -39,10 +39,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean equals(String log,List<UserKS> users) {
-        boolean flag = true;
+        boolean flag = false;
         for (int i = 0; i < users.size(); i++) {
            if (log == users.get(i).getLogin()) {
-               flag = false;
+               flag = true;
                return flag;
            }
         }
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     public boolean equals(String log,String pass,List<UserKS> users) {
         boolean flag = false;
         for (int i = 0; i < users.size(); i++) {
-            if ((log == users.get(i).getLogin())&&(pass == users.get(i).getPassword())) {
+            if ((log.equals(users.get(i).getLogin()))&&(pass.equals(users.get(i).getPassword()))) {
                 flag = true;
                 return flag;
             }
@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserKS create(UserKS userKS) {
-        userKS.setDiff_id(DificultyServiceImpl.getD(0L));
+       // userKS.setDiff_id(DificultyServiceImpl.getD(1L));
         return userRepository.save(userKS);
     }
 

@@ -1,6 +1,7 @@
 package com.simulator.controllers;
 
 import com.simulator.model.UserKS;
+import com.simulator.services.DificultyServiceImpl;
 import com.simulator.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,25 +40,26 @@ public class UserController {
         return userService.saveOrUpdate(userKS);
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping (path = {"/registration/{login}/{password}"})
-    public Long newUser(@PathVariable String login, @PathVariable String pass) {
+    public Long newUser(@PathVariable String login, @PathVariable String password) {
         if (userService.equals(login, userService.listAll())) {
             throw new IllegalArgumentException("Логин занят");
 // return null; тут будет ошибка
         } else {
             UserKS userKS = new UserKS();
             userKS.setLogin(login);
-            userKS.setPassword(pass);
+            userKS.setPassword(password);
+            userKS.setDiff_id(DificultyServiceImpl.getD(1L));
             userService.create(userKS);
             return userKS.getId();
         }
     }
 
     @GetMapping (path = {"/authorization/{login}/{password}"})
-    public Long loginUser(@PathVariable String login, @PathVariable String pass) {
-        if (userService.equals(login, pass, userService.listAll())) {
-            return userService.equalsUS(login, pass, userService.listAll());
+    public Long loginUser(@PathVariable String login, @PathVariable String password) {
+        if (userService.equals(login, password, userService.listAll())) {
+            return userService.equalsUS(login, password, userService.listAll());
         } else {
             throw new IllegalArgumentException("Неверные значения");
         }
