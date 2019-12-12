@@ -10,6 +10,8 @@ public interface ExerciseService {
 
     List<Exercise> listAll();
 
+    List<Exercise> listAllid(Long id);
+
     Exercise getById(Long id);
 
     Exercise create(Exercise exercise);
@@ -19,5 +21,6 @@ public interface ExerciseService {
     Exercise delete(Long id);
 
     Exercise saveOrUpdate(Exercise exercise);
+
 
 }

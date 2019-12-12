@@ -23,8 +23,8 @@ public class ExerciseController {
 
 
     @GetMapping
-    public List<Exercise> listExercise() {
-        return exerciseService.listAll();
+    public List<Exercise> listExercise(long id_diff_lvl) {
+        return exerciseService.listAllid(id_diff_lvl);
     }
 
     @GetMapping(path = "/{id}")

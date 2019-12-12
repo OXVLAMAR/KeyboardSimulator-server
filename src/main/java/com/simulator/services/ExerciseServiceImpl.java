@@ -31,6 +31,20 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
+    public List<Exercise> listAllid(Long id) {
+        List<Exercise> exercises = new ArrayList<>();
+        List<Exercise> exfinals = new ArrayList<>();
+        exerciseRepository.findAll().forEach(exercises::add);
+        for (int i =0; i< exercises.size(); i++)
+        {
+            if (id.equals(exercises.get(i).getDiff_id())){
+                exfinals.add(exercises.get(i));
+            }
+        }
+        return exfinals;
+    }
+
+    @Override
     public Exercise getById(Long id) {
         return exerciseRepository.findById(id).orElse(null);
     }
