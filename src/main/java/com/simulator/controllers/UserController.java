@@ -39,20 +39,24 @@ public class UserController {
         return userService.saveOrUpdate(userKS);
     }
 
-    @PostMapping (path = {"/newUser"})
-    public UserKS newUser(@RequestBody UserKS userKS) {
-        if (userService.equals(userKS, userService.listAll())) {
+    @GetMapping (path = {"/registration"})
+    public Long newUser(String login, String pass) {
+        if (userService.equals(login, userService.listAll())) {
             throw new IllegalArgumentException("Логин занят");
            // return null; тут будет ошибка
         } else {
-            return userService.create(userKS);
+            UserKS userKS = new UserKS();
+            userKS.setLogin(login);
+            userKS.setPassword(pass);
+            userService.create(userKS);
+            return userKS.getId();
         }
     }
 
-    @PostMapping (path = {"/loginUser"})
-    public String loginUser(@RequestBody UserKS userKS) {
-        if (userService.equals(userKS.getLogin(), userKS.getPassword(), userService.listAll())) {
-            return "/userKS/menu";
+    @GetMapping (path = {"/autorization"})
+    public Long loginUser(String login, String pass) {
+        if (userService.equals(login, pass, userService.listAll())) {
+            return userService.equalsUS(login, pass, userService.listAll());
         } else {
             throw new IllegalArgumentException("Неверные значения");
         }

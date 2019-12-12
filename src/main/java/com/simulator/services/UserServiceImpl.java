@@ -27,10 +27,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean equals(UserKS us,List<UserKS> users) {
+    public Long equalsUS(String log,String pass,List<UserKS> users) {
+
+        for (int i = 0; i < users.size(); i++) {
+            if ((log == users.get(i).getLogin())&&(pass == users.get(i).getPassword())) {
+                return users.get(i).getId();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean equals(String log,List<UserKS> users) {
         boolean flag = true;
         for (int i = 0; i < users.size(); i++) {
-           if (us.getLogin() == users.get(i).getLogin()) {
+           if (log == users.get(i).getLogin()) {
                flag = false;
                return flag;
            }

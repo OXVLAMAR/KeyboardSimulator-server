@@ -16,9 +16,11 @@ public interface UserService {
 
     UserKS saveOrUpdate(UserKS userKS);
 
-    boolean equals(UserKS us,List<UserKS> users);
+    boolean equals(String log,List<UserKS> users);
 
     boolean equals(String log,String pass,List<UserKS> users);
+
+    Long equalsUS(String log,String pass,List<UserKS> users);
 
 }
 
