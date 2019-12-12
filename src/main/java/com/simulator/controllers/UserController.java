@@ -39,11 +39,12 @@ public class UserController {
         return userService.saveOrUpdate(userKS);
     }
 
-    @GetMapping (path = {"/registration"})
-    public Long newUser(String login, String pass) {
+    @CrossOrigin(origins = "http://localhost:8080")
+    @GetMapping (path = {"/registration/{login}/{password}"})
+    public Long newUser(@PathVariable String login, @PathVariable String pass) {
         if (userService.equals(login, userService.listAll())) {
             throw new IllegalArgumentException("Логин занят");
-           // return null; тут будет ошибка
+// return null; тут будет ошибка
         } else {
             UserKS userKS = new UserKS();
             userKS.setLogin(login);
@@ -53,8 +54,8 @@ public class UserController {
         }
     }
 
-    @GetMapping (path = {"/authorization"})
-    public Long loginUser(String login, String pass) {
+    @GetMapping (path = {"/authorization/{login}/{password}"})
+    public Long loginUser(@PathVariable String login, @PathVariable String pass) {
         if (userService.equals(login, pass, userService.listAll())) {
             return userService.equalsUS(login, pass, userService.listAll());
         } else {
