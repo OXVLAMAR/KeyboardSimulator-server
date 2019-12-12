@@ -53,7 +53,7 @@ public class UserController {
         }
     }
 
-    @GetMapping (path = {"/autorization"})
+    @GetMapping (path = {"/authorization"})
     public Long loginUser(String login, String pass) {
         if (userService.equals(login, pass, userService.listAll())) {
             return userService.equalsUS(login, pass, userService.listAll());
