@@ -22,18 +22,19 @@ public class UserController {
         this.userService = userService;
     }
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     public List<UserKS> listUser() {
         return userService.listAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/{id}")
     public UserKS getUser(@PathVariable("id") Long id)  {
         return userService.getById(Long.valueOf(id));
     }
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping
     public UserKS saveOrUpdate(@RequestBody UserKS userKS) {
 
@@ -56,6 +57,7 @@ public class UserController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping (path = {"/authorization/{login}/{password}"})
     public Long loginUser(@PathVariable String login, @PathVariable String password) {
         if (userService.equals(login, password, userService.listAll())) {
@@ -66,6 +68,7 @@ public class UserController {
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path = "/{id}")
     public UserKS delete(@PathVariable("id") Long id) {
         return userService.delete(Long.valueOf(id));

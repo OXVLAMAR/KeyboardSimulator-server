@@ -21,34 +21,39 @@ public class ExerciseController {
         this.exerciseService = exerciseService;
     }
 
-
-    @GetMapping
-    public List<Exercise> listExercise(long id_diff_lvl) {
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(path = "/{id_diff_lvl}")
+    public List<Exercise> listExercise(@PathVariable long id_diff_lvl) {
         return exerciseService.listAllid(id_diff_lvl);
     }
 
-    @GetMapping(path = "/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(path = "getExercise/{id}")
     public Exercise getExercise(@PathVariable("id") Long id) {
         return exerciseService.getById(Long.valueOf(id));
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping
     public Exercise saveOrUpdate(@RequestBody Exercise exercise) {
 
         return exerciseService.saveOrUpdate(exercise);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping (path = {"/newExercise"})
     public Exercise newExercise(@RequestBody Exercise exercise) {
         return exerciseService.create(exercise);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping (path = {"/generate"})
     public Exercise generateExercise(@RequestBody Exercise exercise) {
         return exerciseService.generate(exercise);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path = "/{id}")
     public Exercise delete(@PathVariable("id") Long id) {
         return exerciseService.delete(Long.valueOf(id));

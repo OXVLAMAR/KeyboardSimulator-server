@@ -21,30 +21,32 @@ public class DificultyController {
         this.dificultyService = dificultyService;
     }
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     public List<Dificulty> listDificulty() {
         return dificultyService.listAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/{id}")
     public Dificulty getDificulty(@PathVariable("id") Long id) {
         return dificultyService.getById(Long.valueOf(id));
     }
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping
     public Dificulty saveOrUpdate(@RequestBody Dificulty dificulty) {
 
         return dificultyService.saveOrUpdate(dificulty);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public Dificulty newDificulty(@RequestBody Dificulty dificulty) {
         return dificultyService.create(dificulty);
     }
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path = "/{id}")
     public Dificulty delete(@PathVariable("id") Long id) {
         return dificultyService.delete(Long.valueOf(id));
