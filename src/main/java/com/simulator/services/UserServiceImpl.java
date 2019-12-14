@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     public boolean equals(String log,List<UserKS> users) {
         boolean flag = false;
         for (int i = 0; i < users.size(); i++) {
-           if (log == users.get(i).getLogin()) {
+           if (log.equals(users.get(i).getLogin())) {
                flag = true;
                return flag;
            }
