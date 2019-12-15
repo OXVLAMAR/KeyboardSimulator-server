@@ -60,8 +60,9 @@ public class ExerciseController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path = "/{id}")
-    public Exercise delete(@PathVariable("id") Long id) {
-        return exerciseService.delete(Long.valueOf(id));
+    public List<Exercise> delete(@PathVariable("id") Long id) {
+        exerciseService.delete(id);
+        return exerciseService.listAll();
     }
 }
 
