@@ -15,8 +15,6 @@ public class Statistic {
     private java.sql.Time exercise_time;
     @Column(name = "num_of_mistakes")
     private int num_of_mistakes;
-    @Column(name = "pressing_time")
-    private int pressing_time;
     @Column(name = "speed")
     private int speed;
     @Column(name = "date")
@@ -85,14 +83,6 @@ public class Statistic {
 
     public void setNum_of_mistakes(int num_of_mistakes) {
         this.num_of_mistakes = num_of_mistakes;
-    }
-
-    public int getPressing_time() {
-        return pressing_time;
-    }
-
-    public void setPressing_time(int pressing_time) {
-        this.pressing_time = pressing_time;
     }
 
     public int getSpeed() {
