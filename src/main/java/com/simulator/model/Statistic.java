@@ -12,7 +12,7 @@ public class Statistic {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "exercise_time")
-    private java.sql.Time exercise_time;
+    private int exercise_time;
     @Column(name = "num_of_mistakes")
     private int num_of_mistakes;
     @Column(name = "speed")
@@ -22,11 +22,11 @@ public class Statistic {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "exersise_id", nullable = false)
+    @JoinColumn(name = "exercise_id", nullable = false)
     private Exercise exercise;
 
 
-    @JsonProperty("exersise_id")
+    @JsonProperty("exercise_id")
     private void unpackNestedExersise(Long id) {
         this.exercise = new Exercise();
         exercise.setId(id);
@@ -69,11 +69,11 @@ public class Statistic {
     }
 
 
-    public java.sql.Time getExercise_time() {
+    public int getExercise_time() {
         return exercise_time;
     }
 
-    public void setExercise_time(java.sql.Time exercise_time) {
+    public void setExercise_time(int exercise_time) {
         this.exercise_time = exercise_time;
     }
 

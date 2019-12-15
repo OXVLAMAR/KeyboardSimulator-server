@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserKS create(UserKS userKS) {
-       // userKS.setDiff_id(DificultyServiceImpl.getD(1L));
+        //userKS.setDiff_id(DificultyServiceImpl.getD(1L));
         return userRepository.save(userKS);
     }
 

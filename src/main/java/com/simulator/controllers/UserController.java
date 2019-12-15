@@ -70,8 +70,9 @@ public class UserController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path = "/{id}")
-    public UserKS delete(@PathVariable("id") Long id) {
-        return userService.delete(Long.valueOf(id));
+    public List<UserKS> delete(@PathVariable("id") Long id) {
+        userService.delete(id);
+        return userService.listAll();
     }
 }
 

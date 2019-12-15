@@ -30,8 +30,7 @@ public class UserKS {
     @JoinColumn(name = "dif_id", nullable = false)
     private Dificulty dificulty_lvl;
 
-
-    @JsonProperty("dif_id")
+    @JsonProperty(value="diff_id")
     private void unpackNestedDiff(Long id) {
         this.dificulty_lvl = new Dificulty();
         dificulty_lvl.setId(id);
@@ -84,6 +83,7 @@ public class UserKS {
     public void setType_of_access(String type_of_access) {
         this.type_of_access = type_of_access;
     }
+
 }
 
 

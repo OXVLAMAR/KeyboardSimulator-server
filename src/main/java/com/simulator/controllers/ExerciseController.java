@@ -1,6 +1,7 @@
 package com.simulator.controllers;
 
 import com.simulator.model.Exercise;
+import com.simulator.model.UserKS;
 import com.simulator.services.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +23,14 @@ public class ExerciseController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping
+    public List<Exercise> listExerciseAll() {
+        return exerciseService.listAll();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/{id_diff_lvl}")
-    public List<Exercise> listExercise(@PathVariable long id_diff_lvl) {
+    public List<Exercise> listExercise(@PathVariable ("id_diff_lvl")  long id_diff_lvl) {
         return exerciseService.listAllid(id_diff_lvl);
     }
 
@@ -33,11 +40,9 @@ public class ExerciseController {
         return exerciseService.getById(Long.valueOf(id));
     }
 
-
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping
     public Exercise saveOrUpdate(@RequestBody Exercise exercise) {
-
         return exerciseService.saveOrUpdate(exercise);
     }
 
