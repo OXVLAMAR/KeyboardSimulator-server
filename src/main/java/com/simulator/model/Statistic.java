@@ -18,7 +18,7 @@ public class Statistic {
     @Column(name = "speed")
     private int speed;
     @Column(name = "date")
-    private java.sql.Date date;
+    private java.sql.Timestamp date;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -93,11 +93,11 @@ public class Statistic {
         this.speed = speed;
     }
 
-    public java.sql.Date getDate() {
+    public java.sql.Timestamp getDate() {
         return date;
     }
 
-    public void setDate(java.sql.Date date) {
+    public void setDate(java.sql.Timestamp date) {
         this.date = date;
     }
 }

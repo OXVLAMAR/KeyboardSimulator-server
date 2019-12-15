@@ -21,29 +21,34 @@ public class KeybAreaController {
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     public List<KeybArea> listKeybArea() {
         return keyb_areaService.listAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/{id}")
     public KeybArea getKeybArea(@PathVariable("id") Long id) {
         return keyb_areaService.getById(Long.valueOf(id));
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping
     public KeybArea saveOrUpdate(@RequestBody KeybArea keyb_area) {
 
         return keyb_areaService.saveOrUpdate(keyb_area);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public KeybArea newKeybArea(@RequestBody KeybArea keyb_area) {
         return keyb_areaService.create(keyb_area);
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path = "/{id}")
     public KeybArea delete(@PathVariable("id") Long id) {
         return keyb_areaService.delete(Long.valueOf(id));

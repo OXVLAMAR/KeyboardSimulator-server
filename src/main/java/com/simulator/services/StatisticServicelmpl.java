@@ -1,11 +1,13 @@
 package com.simulator.services;
 
 import com.simulator.model.Statistic;
+import com.simulator.model.UserKS;
 import com.simulator.repositories.StatisticRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -34,7 +36,22 @@ public class StatisticServicelmpl implements StatisticService {
     }
 
     @Override
-    public Statistic create(Statistic statistic) {
+    public ArrayList<Statistic> getStUS(Long id, List<Statistic> st) {
+        ArrayList<Statistic> result = new ArrayList<>();
+        for (int i = 0; i < st.size(); i++) {
+            if (id.equals(st.get(i).getUser_id())) {
+                result.add(st.get(i));
+            }
+        }
+        return result;
+    }
+
+
+    @Override
+    public Statistic create(Statistic statistic)
+    {
+        java.sql.Timestamp myDate = new java.sql.Timestamp(System.currentTimeMillis());
+        statistic.setDate(myDate);
         return statisticRepository.save(statistic);
     }
 
