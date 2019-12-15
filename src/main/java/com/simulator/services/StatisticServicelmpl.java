@@ -64,11 +64,14 @@ public class StatisticServicelmpl implements StatisticService {
                     count++;
                 }
             }
+            double ec = exercise_time/count+0.5;
+            double mc = (num_of_mistakes/count)+0.5;
+            double sc = speed/count+0.5;
             allst.setId(num_ex.get(j));
             allst.setCount(count);
-            allst.setExercise_time(exercise_time/count);
-            allst.setNum_of_mistakes(num_of_mistakes/count);
-            allst.setSpeed(speed/count);
+            allst.setExercise_time((int)ec);
+            allst.setNum_of_mistakes((int)mc);
+            allst.setSpeed((int)sc);
             all_st.add(allst);
             j++;
              exercise_time = 0;
