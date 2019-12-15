@@ -57,11 +57,11 @@ public class StatisticServicelmpl implements StatisticService {
         {
             AllStatistic allst = new AllStatistic();
             for (int k = 0; k < statistics.size(); k++){
-                if(!num_ex.get(j).equals(statistics.get(k).getExercise_id())) {
-                    count++;
+                if(num_ex.get(j).equals(statistics.get(k).getExercise_id())) {
                     exercise_time += statistics.get(k).getExercise_time();
                     num_of_mistakes += statistics.get(k).getNum_of_mistakes();
                     speed += statistics.get(k).getSpeed();
+                    count++;
                 }
             }
             allst.setId(num_ex.get(j));
@@ -71,6 +71,10 @@ public class StatisticServicelmpl implements StatisticService {
             allst.setSpeed(speed/count);
             all_st.add(allst);
             j++;
+             exercise_time = 0;
+             num_of_mistakes = 0;
+             speed = 0;
+             count = 0;
         }
         return all_st;
     }
