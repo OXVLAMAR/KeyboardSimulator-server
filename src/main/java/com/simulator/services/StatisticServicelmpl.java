@@ -1,5 +1,6 @@
 package com.simulator.services;
 
+import com.simulator.model.AllStatistic;
 import com.simulator.model.Statistic;
 import com.simulator.model.UserKS;
 import com.simulator.repositories.StatisticRepository;
@@ -28,6 +29,50 @@ public class StatisticServicelmpl implements StatisticService {
         List<Statistic> statistics = new ArrayList<>();
         statisticRepository.findAll().forEach(statistics::add);
         return statistics;
+    }
+
+    @Override
+    public List<AllStatistic>  listAllAdmin() {
+        List<Statistic> statistics = new ArrayList<>();
+        List<Long> num_ex = new ArrayList<>();
+        List<AllStatistic> all_st = new ArrayList<>();
+        statisticRepository.findAll().forEach(statistics::add);
+       int i= 0;
+       int j = 0;
+       while(i < statistics.size())
+       {
+           if(!num_ex.contains(statistics.get(i).getExercise_id())) {
+               num_ex.add(statistics.get(i).getExercise_id());
+           }
+
+           i++;
+       }
+         Long id = 0L;
+         int exercise_time = 0;
+         int num_of_mistakes = 0;
+         int speed = 0;
+         int count = 0;
+
+        while(j < num_ex.size())
+        {
+            AllStatistic allst = new AllStatistic();
+            for (int k = 0; k < statistics.size(); k++){
+                if(!num_ex.get(j).equals(statistics.get(k).getExercise_id())) {
+                    count++;
+                    exercise_time += statistics.get(k).getExercise_time();
+                    num_of_mistakes += statistics.get(k).getNum_of_mistakes();
+                    speed += statistics.get(k).getSpeed();
+                }
+            }
+            allst.setId(num_ex.get(j));
+            allst.setCount(count);
+            allst.setExercise_time(exercise_time/count);
+            allst.setNum_of_mistakes(num_of_mistakes/count);
+            allst.setSpeed(speed/count);
+            all_st.add(allst);
+            j++;
+        }
+        return all_st;
     }
 
     @Override

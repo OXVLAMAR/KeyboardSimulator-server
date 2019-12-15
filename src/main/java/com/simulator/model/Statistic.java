@@ -20,23 +20,22 @@ public class Statistic {
     @Column(name = "date")
     private java.sql.Timestamp date;
 
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "exercise_id", nullable = false)
     private Exercise exercise;
 
 
-    @JsonProperty("exercise_id")
-    private void unpackNestedExersise(Long id) {
+    @JsonProperty(value="exercise_id")
+    private void unpackNestedExercise(Long id) {
         this.exercise = new Exercise();
         exercise.setId(id);
     }
 
-    public Long getExersise_id() {
+    public Long getExercise_id() {
         return exercise.getId();
     }
 
-    public void setExersise_id(Exercise exercise) {
+    public void setExercise_id(Exercise exercise) {
         this.exercise = exercise;
     }
 
@@ -100,4 +99,5 @@ public class Statistic {
     public void setDate(java.sql.Timestamp date) {
         this.date = date;
     }
+
 }

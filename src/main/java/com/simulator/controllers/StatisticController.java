@@ -1,8 +1,8 @@
 package com.simulator.controllers;
 
 
+import com.simulator.model.AllStatistic;
 import com.simulator.model.Statistic;
-import com.simulator.model.UserKS;
 import com.simulator.services.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +29,14 @@ public class StatisticController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/statisticsAdmin")
+    public List<AllStatistic> listAllStatistic() {
+        return statisticService.listAllAdmin();
+    }
+
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(path = "/statistic/{id}")
     public Statistic getStatistic(@PathVariable("id") Long id) {
         return statisticService.getById(Long.valueOf(id));
     }
