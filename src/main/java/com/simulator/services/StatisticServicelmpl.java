@@ -47,11 +47,12 @@ public class StatisticServicelmpl implements StatisticService {
 
            i++;
        }
-         Long id = 0L;
-         int exercise_time = 0;
-         int num_of_mistakes = 0;
-         int speed = 0;
-         int count = 0;
+        // Long id = 0L;
+
+         double exercise_time = 0;
+         double num_of_mistakes = 0;
+         double speed = 0;
+         double count = 0;
 
         while(j < num_ex.size())
         {
@@ -64,14 +65,31 @@ public class StatisticServicelmpl implements StatisticService {
                     count++;
                 }
             }
-            double ec = exercise_time/count+0.5;
-            double mc = (num_of_mistakes/count)+0.5;
-            double sc = speed/count+0.5;
+
+            if(exercise_time == 0){
+                allst.setExercise_time(0);
+            }
+            else{
+
+                allst.setExercise_time((int)Math.round(exercise_time/count));
+            }
+            if(num_of_mistakes == 0){
+                allst.setExercise_time(0);
+
+            }
+            else{
+
+                allst.setNum_of_mistakes((int)Math.round(num_of_mistakes/count));
+            }
+            if(speed == 0){
+                allst.setExercise_time(0);
+            }
+            else{
+                allst.setSpeed((int)Math.round(speed/count));
+            }
+
             allst.setId(num_ex.get(j));
-            allst.setCount(count);
-            allst.setExercise_time((int)ec);
-            allst.setNum_of_mistakes((int)mc);
-            allst.setSpeed((int)sc);
+            allst.setCount((int)count);
             all_st.add(allst);
             j++;
              exercise_time = 0;
