@@ -88,7 +88,7 @@ public class ExerciseServiceImpl implements ExerciseService {
         Dificulty dif_lvl =  DificultyServiceImpl.getD(dif);
         exercise.setDiff_id(dif_lvl);
         StringBuilder sb = new StringBuilder(dif_lvl.getMax_length());
-        String zone = "";
+        String zone = " ";
         for (int j = 0; j< dif_lvl.getDiffKey().size();j++ ){
             zone += KeybAreaServiceImpl.getK(dif_lvl.getDiffKey().get(j).getKeybArea_id()).getDescription();
         }
@@ -136,7 +136,7 @@ public class ExerciseServiceImpl implements ExerciseService {
             throw new IllegalArgumentException("Неверная длина упражнения");
         } else {
             char [] fulltext  = full.toCharArray();
-            String zone = "";
+            String zone = " ";
             for (int j = 0; j< dif.getDiffKey().size();j++ ){
                 zone += KeybAreaServiceImpl.getK(dif.getDiffKey().get(j).getKeybArea_id()).getDescription();
             }
