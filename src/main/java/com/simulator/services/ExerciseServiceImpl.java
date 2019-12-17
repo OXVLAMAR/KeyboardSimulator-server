@@ -74,22 +74,24 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public Exercise generate(Exercise exercise) {
+    public Exercise generate(Long dif) {
         Random random = new Random();
+        Exercise exercise = new Exercise();
         int count = 0;
         String textF = "";
         String textE = "";
-        Dificulty dif = DificultyServiceImpl.getD(exercise.getDiff_id());
-        StringBuilder sb = new StringBuilder(dif.getMax_length());
+        Dificulty dif_lvl =  DificultyServiceImpl.getD(dif);
+        exercise.setDiff_id(dif_lvl);
+        StringBuilder sb = new StringBuilder(dif_lvl.getMax_length());
         String zone = "";
-        for (int j = 0; j< dif.getDiffKey().size();j++ ){
-            zone += KeybAreaServiceImpl.getK(dif.getDiffKey().get(j).getKeybArea_id()).getDescription();
+        for (int j = 0; j< dif_lvl.getDiffKey().size();j++ ){
+            zone += KeybAreaServiceImpl.getK(dif_lvl.getDiffKey().get(j).getKeybArea_id()).getDescription();
         }
-        while (count < dif.getMax_length()) {
+        while (count < dif_lvl.getMax_length()) {
             char[] word = new char[random.nextInt(8) + 3]; // words of length 3 through 7. (1 and 2 letter words are boring.)
             for (int j = 0; j < word.length; j++) {
                 word[j] = (char) (zone.charAt(random.nextInt(zone.length())));
-                if (count < dif.getMax_length()) {
+                if (count < dif_lvl.getMax_length()) {
                     if (textF.length()<= 251) {
                         textF += word[j];
                         count++;
@@ -99,7 +101,7 @@ public class ExerciseServiceImpl implements ExerciseService {
                     }
                 }
             }
-            if (count < dif.getMax_length()) {
+            if (count < dif_lvl.getMax_length()) {
                 if (textF.length()<= 251) {
                     textF += " ";
                     count++;

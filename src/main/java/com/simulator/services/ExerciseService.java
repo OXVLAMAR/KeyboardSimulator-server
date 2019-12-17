@@ -16,7 +16,7 @@ public interface ExerciseService {
 
     Exercise create(Exercise exercise);
 
-    Exercise generate(Exercise exercise);
+    Exercise generate(Long dif);
 
     Exercise delete(Long id);
 

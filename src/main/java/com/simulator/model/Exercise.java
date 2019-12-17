@@ -29,7 +29,7 @@ public class Exercise {
     private Dificulty dificulty_lvl;
 
 
-    @JsonProperty("dif_id")
+    @JsonProperty("diff_id")
     private void unpackNestedDiff(Long id) {
         this.dificulty_lvl = new Dificulty();
         dificulty_lvl.setId(id);

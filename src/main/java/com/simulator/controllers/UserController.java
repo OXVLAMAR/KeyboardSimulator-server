@@ -30,19 +30,23 @@ public class UserController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/{id}")
-    public UserKS getUser(@PathVariable("id") Long id)  {
+    public UserKS getUser(@PathVariable("id") Long id) {
         return userService.getById(Long.valueOf(id));
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping
     public UserKS saveOrUpdate(@RequestBody UserKS userKS) {
-
-        return userService.saveOrUpdate(userKS);
+        if (userService.equals(userKS.getLogin(), userService.listAll())) {
+            throw new IllegalArgumentException("Логин занят");
+// return null; тут будет ошибка
+        } else {
+            return userService.saveOrUpdate(userKS);
+        }
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping (path = {"/registration/{login}/{password}"})
+    @GetMapping(path = {"/registration/{login}/{password}"})
     public Long newUser(@PathVariable String login, @PathVariable String password) {
         if (userService.equals(login, userService.listAll())) {
             throw new IllegalArgumentException("Логин занят");
@@ -58,7 +62,7 @@ public class UserController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping (path = {"/authorization/{login}/{password}"})
+    @GetMapping(path = {"/authorization/{login}/{password}"})
     public Long loginUser(@PathVariable String login, @PathVariable String password) {
         if (userService.equals(login, password, userService.listAll())) {
             return userService.equalsUS(login, password, userService.listAll());

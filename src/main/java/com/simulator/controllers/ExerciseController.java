@@ -54,8 +54,8 @@ public class ExerciseController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping (path = {"/generate"})
-    public Exercise generateExercise(@RequestBody Exercise exercise) {
-        return exerciseService.generate(exercise);
+    public Exercise generateExercise(@RequestBody Long diff_id) {
+        return exerciseService.generate(diff_id);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
