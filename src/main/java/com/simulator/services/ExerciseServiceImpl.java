@@ -5,6 +5,7 @@ import com.simulator.model.Exercise;
 import com.simulator.repositories.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +51,11 @@ public class ExerciseServiceImpl implements ExerciseService {
     }
 
     @Override
-    public Exercise create(Exercise exercise) {
+    public Exercise create(String textF, String textE, Long diff_id) {
+        Exercise exercise = new Exercise();
+        exercise.setTextF(textF);
+        exercise.setTextE(textE);
+        exercise.setDiff_id(DificultyServiceImpl.getD(diff_id));
         String full = exercise.getTextE() + exercise.getTextF();
         Dificulty dif = DificultyServiceImpl.getD(exercise.getDiff_id());
         if (dif.getMin_length() > full.length() ||
@@ -124,6 +129,24 @@ public class ExerciseServiceImpl implements ExerciseService {
 
     @Override
     public Exercise saveOrUpdate(Exercise exercise) {
+        String full = exercise.getTextE() + exercise.getTextF();
+        Dificulty dif = DificultyServiceImpl.getD(exercise.getDiff_id());
+        if (dif.getMin_length() > full.length() ||
+                full.length() > dif.getMax_length()) {
+            throw new IllegalArgumentException("Неверная длина упражнения");
+        } else {
+            char [] fulltext  = full.toCharArray();
+            String zone = "";
+            for (int j = 0; j< dif.getDiffKey().size();j++ ){
+                zone += KeybAreaServiceImpl.getK(dif.getDiffKey().get(j).getKeybArea_id()).getDescription();
+            }
+
+            for (int i = 0; i< fulltext.length;i++ ){
+                if (zone.indexOf(fulltext[i])<0) {
+                    throw new IllegalArgumentException("Символ не входит в текущие зоны клавиатуры");
+                }
+            }
+        }
         return exerciseRepository.save(exercise);
     }
 

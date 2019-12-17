@@ -14,7 +14,7 @@ public interface ExerciseService {
 
     Exercise getById(Long id);
 
-    Exercise create(Exercise exercise);
+    Exercise create(String textF, String textE, Long diff_id);
 
     Exercise generate(Long dif);
 

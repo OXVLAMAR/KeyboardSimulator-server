@@ -48,8 +48,8 @@ public class ExerciseController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping (path = {"/newExercise"})
-    public Exercise newExercise(@RequestBody Exercise exercise) {
-        return exerciseService.create(exercise);
+    public Exercise newExercise(@RequestBody String textF, @RequestBody String textE, @RequestBody Long diff_id) {
+        return exerciseService.create(textF,textE,diff_id);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
