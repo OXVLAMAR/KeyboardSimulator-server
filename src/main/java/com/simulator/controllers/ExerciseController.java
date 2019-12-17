@@ -48,7 +48,7 @@ public class ExerciseController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping (path = {"/newExercise"})
-    public Exercise newExercise(@RequestBody String textF, @RequestBody String textE, @RequestBody Long diff_id) {
+    public Exercise newExercise(@RequestBody String textF, String textE, @RequestBody Long diff_id) {
         return exerciseService.create(textF,textE,diff_id);
     }
 
