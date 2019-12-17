@@ -112,8 +112,8 @@ public class ExerciseServiceImpl implements ExerciseService {
             }
         }
         exercise.setTextF(textF);
-        exercise.setTextF(textE);
-        return exerciseRepository.save(exercise);
+        exercise.setTextE(textE);
+        return exercise;
     }
 
     @Override
