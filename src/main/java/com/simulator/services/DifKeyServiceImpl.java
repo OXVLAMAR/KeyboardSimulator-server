@@ -62,7 +62,7 @@ public class DifKeyServiceImpl implements DifKeyService {
                }
 
            }
-            if(flag!=true){
+            if((diffKey.get(c).getDiff_id() ==diff.getId())&& (flag!=true)){
                 diffKeyRepository.delete(diffKey.get(c));
             }
             flag = false;

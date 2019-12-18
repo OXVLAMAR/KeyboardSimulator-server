@@ -19,7 +19,7 @@ public class DiffKeyController {
 
 
     @Autowired
-    public void setDiffKey(DifKeyService dificultyService) {
+    public void setDiffKey(DifKeyService difKeyService) {
         this.difKeyService = difKeyService;
     }
 
@@ -38,9 +38,9 @@ public class DiffKeyController {
 
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(path = "setdif/{diff}/{keyzone}")
-    public void saveOrUpdate(@PathVariable("diff") Dificulty diff, @PathVariable("keyzone") List<KeybArea> keyzone) {
-        difKeyService.saveOrUpdate(diff,keyzone);
+    @GetMapping(path = "/setdif/{diff}/{keyboardArea}")
+    public void saveOrUpdate(@PathVariable("diff") Dificulty diff, @PathVariable("keyboardArea") List<KeybArea> keyboardArea) {
+        difKeyService.saveOrUpdate(diff,keyboardArea);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -56,7 +56,7 @@ public class DiffKeyController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(path = "/{diff_id}")
+    @GetMapping(path = "getZone/{diff_id}")
     public List<KeybArea> getKeyZone(@PathVariable("diff_id") Long id)
     {
         return difKeyService.getKeyboardZone(id);
