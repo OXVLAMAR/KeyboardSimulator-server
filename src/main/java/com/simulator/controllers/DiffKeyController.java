@@ -37,10 +37,9 @@ public class DiffKeyController {
 
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PutMapping
-    public DiffKey saveOrUpdate(@RequestBody DiffKey diffKey) {
-
-        return difKeyService.saveOrUpdate(diffKey);
+    @GetMapping(path = "setdif/{diff_id}/{keyzone}")
+    public void saveOrUpdate(@PathVariable("diff_id") Long id, @PathVariable("keyzone") List<KeybArea> keyzone) {
+        difKeyService.saveOrUpdate(id,keyzone);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -61,4 +60,5 @@ public class DiffKeyController {
     {
         return difKeyService.getKeyboardZone(id);
     }
+
 }

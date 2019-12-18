@@ -42,7 +42,8 @@ public class DiffKey {
 
     @JsonProperty("keyb_area_id")
     private void unpackNestedKeybArea(Long id) {
-        this.keyboard_area = new KeybArea();        keyboard_area.setId(id);
+        this.keyboard_area = new KeybArea();
+        keyboard_area.setId(id);
      }
 
     public Long getKeybArea_id() {
