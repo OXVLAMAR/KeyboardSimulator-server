@@ -46,7 +46,7 @@ public class DifKeyServiceImpl implements DifKeyService {
     }
 
     @Override
-    public void saveOrUpdate(Dificulty diff, List<KeybArea> keyzone)
+    public Dificulty saveOrUpdate(Dificulty diff, List<KeybArea> keyzone)
     {
         List<DiffKey> diffKey = new ArrayList<>();
         diffKeyRepository.findAll().forEach(diffKey::add);
@@ -88,22 +88,22 @@ public class DifKeyServiceImpl implements DifKeyService {
             c++;
             h++;
         }
-        DificultyServiceImpl.createD(diff);
+       return DificultyServiceImpl.createD(diff);
     }
 
 
     @Override
     public List<KeybArea> getKeyboardZone(Long diff_id) {
-        Long i = 0L;
+
         int c = 0;
         List<KeybArea> keyb_area = new ArrayList<>();
         List<DiffKey> diffKey = new ArrayList<>();
         diffKeyRepository.findAll().forEach(diffKey::add);
         while (c < diffKey.size()) {
             if (diffKey.get(c).getDiff_id() == diff_id) {
-                keyb_area.add(KeybAreaServiceImpl.getK(i));
+                keyb_area.add(KeybAreaServiceImpl.getK(diffKey.get(c).getKeybArea_id()));
             }
-            i++;
+
             c++;
         }
 

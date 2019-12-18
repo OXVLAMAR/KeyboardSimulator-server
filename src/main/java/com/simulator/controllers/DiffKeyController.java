@@ -39,8 +39,8 @@ public class DiffKeyController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/setdif/{diff}/{keyboardArea}")
-    public void saveOrUpdate(@PathVariable("diff") Dificulty diff, @PathVariable("keyboardArea") List<KeybArea> keyboardArea) {
-        difKeyService.saveOrUpdate(diff,keyboardArea);
+    public Dificulty saveOrUpdate(@PathVariable("diff") Dificulty diff, @PathVariable("keyboardArea") List<KeybArea> keyboardArea) {
+        return  difKeyService.saveOrUpdate(diff,keyboardArea);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
