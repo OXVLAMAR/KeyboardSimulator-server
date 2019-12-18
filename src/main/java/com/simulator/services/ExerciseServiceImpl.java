@@ -131,6 +131,10 @@ public class ExerciseServiceImpl implements ExerciseService {
     public Exercise saveOrUpdate(Exercise exercise) {
         String full = exercise.getTextE() + exercise.getTextF();
         Dificulty dif = DificultyServiceImpl.getD(exercise.getDiff_id());
+
+
+
+
         if (dif.getMin_length() > full.length() ||
                 full.length() > dif.getMax_length()) {
             throw new IllegalArgumentException("Неверная длина упражнения");

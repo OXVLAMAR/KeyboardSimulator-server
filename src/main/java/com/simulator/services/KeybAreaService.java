@@ -16,4 +16,5 @@ public interface KeybAreaService {
     KeybArea delete(Long id);
 
     KeybArea saveOrUpdate(KeybArea keyb_area);
+
 }

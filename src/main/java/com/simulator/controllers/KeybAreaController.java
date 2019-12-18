@@ -1,5 +1,6 @@
 package com.simulator.controllers;
 
+import com.simulator.model.DiffKey;
 import com.simulator.model.KeybArea;
 import com.simulator.services.KeybAreaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,4 +54,7 @@ public class KeybAreaController {
     public KeybArea delete(@PathVariable("id") Long id) {
         return keyb_areaService.delete(Long.valueOf(id));
     }
+
+
+
 }

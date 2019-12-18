@@ -1,5 +1,6 @@
 package com.simulator.services;
 
+import com.simulator.model.Dificulty;
 import com.simulator.model.KeybArea;
 import com.simulator.repositories.KeybAreaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,6 @@ public class KeybAreaServiceImpl implements KeybAreaService {
     public KeybArea saveOrUpdate(KeybArea keyb_area) {
         return keyb_areaRepository.save(keyb_area);
     }
+
 
 }

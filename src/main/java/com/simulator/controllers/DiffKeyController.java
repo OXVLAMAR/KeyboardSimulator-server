@@ -1,6 +1,7 @@
 package com.simulator.controllers;
 
 import com.simulator.model.DiffKey;
+import com.simulator.model.KeybArea;
 import com.simulator.services.DifKeyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,8 @@ public class DiffKeyController {
         return difKeyService.getById(Long.valueOf(id));
     }
 
+
+
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping
     public DiffKey saveOrUpdate(@RequestBody DiffKey diffKey) {
@@ -50,5 +53,12 @@ public class DiffKeyController {
     @DeleteMapping(path = "/{id}")
     public DiffKey delete(@PathVariable("id") Long id) {
         return difKeyService.delete(Long.valueOf(id));
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(path = "/{diff_id}")
+    public List<KeybArea> getKeyZone(@PathVariable("diff_id") Long id)
+    {
+        return difKeyService.getKeyboardZone(id);
     }
 }
