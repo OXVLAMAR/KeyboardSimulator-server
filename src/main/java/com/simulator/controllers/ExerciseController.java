@@ -35,7 +35,7 @@ public class ExerciseController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(path = "getExercise/{id}")
+    @GetMapping(path = "/getExercise/{id}")
     public Exercise getExercise(@PathVariable("id") Long id) {
         return exerciseService.getById(Long.valueOf(id));
     }
@@ -48,7 +48,8 @@ public class ExerciseController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping (path = {"/newExercise/{textF}/{textE}/{diff_id}"})
-    public Exercise newExercise(@PathVariable String textF, @PathVariable  String textE, @PathVariable Long diff_id) {
+    public Exercise newExercise(@PathVariable ("textF") String textF, @PathVariable  String textE, @PathVariable  ("diff_id") Long diff_id) {
+        if(textE.equals(" ")){textE= "";}
         return exerciseService.create(textF,textE,diff_id);
     }
 
