@@ -7,6 +7,7 @@ import com.simulator.services.DifKeyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -39,7 +40,7 @@ public class DiffKeyController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/setdif/{diff}/{keyboardArea}")
-    public Dificulty saveOrUpdate(@PathVariable("diff") Dificulty diff, @PathVariable("keyboardArea") List<KeybArea> keyboardArea) {
+    public Dificulty saveOrUpdate(@PathVariable("diff") Dificulty diff, @PathVariable("keyboardArea") ArrayList<KeybArea> keyboardArea) {
         return  difKeyService.saveOrUpdate(diff,keyboardArea);
     }
 
@@ -59,7 +60,7 @@ public class DiffKeyController {
     @GetMapping(path = "getZone/{diff_id}")
     public List<KeybArea> getKeyZone(@PathVariable("diff_id") Long id)
     {
-        return difKeyService.getKeyboardZone(id);
+         return difKeyService.getKeyboardZone(id);
     }
 
 }
