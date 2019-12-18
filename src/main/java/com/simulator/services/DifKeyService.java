@@ -1,6 +1,7 @@
 package com.simulator.services;
 
 import com.simulator.model.DiffKey;
+import com.simulator.model.Dificulty;
 import com.simulator.model.KeybArea;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -16,7 +17,7 @@ public interface DifKeyService {
 
     DiffKey delete(Long id);
 
-    void saveOrUpdate( Long id, List<KeybArea> keyzone);
+    void saveOrUpdate(Dificulty diff, List<KeybArea> keyzone);
 
     List<KeybArea> getKeyboardZone(Long diff_id);
 }

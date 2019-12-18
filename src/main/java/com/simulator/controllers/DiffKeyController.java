@@ -1,6 +1,7 @@
 package com.simulator.controllers;
 
 import com.simulator.model.DiffKey;
+import com.simulator.model.Dificulty;
 import com.simulator.model.KeybArea;
 import com.simulator.services.DifKeyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,9 @@ public class DiffKeyController {
 
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(path = "setdif/{diff_id}/{keyzone}")
-    public void saveOrUpdate(@PathVariable("diff_id") Long id, @PathVariable("keyzone") List<KeybArea> keyzone) {
-        difKeyService.saveOrUpdate(id,keyzone);
+    @GetMapping(path = "setdif/{diff}/{keyzone}")
+    public void saveOrUpdate(@PathVariable("diff") Dificulty diff, @PathVariable("keyzone") List<KeybArea> keyzone) {
+        difKeyService.saveOrUpdate(diff,keyzone);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")

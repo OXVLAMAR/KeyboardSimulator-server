@@ -46,7 +46,7 @@ public class DifKeyServiceImpl implements DifKeyService {
     }
 
     @Override
-    public void saveOrUpdate(Long id, List<KeybArea> keyzone)
+    public void saveOrUpdate(Dificulty diff, List<KeybArea> keyzone)
     {
         List<DiffKey> diffKey = new ArrayList<>();
         diffKeyRepository.findAll().forEach(diffKey::add);
@@ -56,7 +56,7 @@ public class DifKeyServiceImpl implements DifKeyService {
         while (c < diffKey.size()) {
            for (int i =0; i<keyzone.size(); i++)
            {
-               if((diffKey.get(c).getDiff_id() ==id) && (diffKey.get(c).getKeybArea_id() == keyzone.get(i).getId())){
+               if((diffKey.get(c).getDiff_id() ==diff.getId()) && (diffKey.get(c).getKeybArea_id() == keyzone.get(i).getId())){
                    flag = true;
                    break;
                }
@@ -72,7 +72,7 @@ public class DifKeyServiceImpl implements DifKeyService {
         while (h < keyzone.size()) {
             for (int i =0; i<diffKey.size(); i++)
             {
-                if((diffKey.get(i).getDiff_id() ==id) && (diffKey.get(i).getKeybArea_id() == keyzone.get(c).getId())){
+                if((diffKey.get(i).getDiff_id() ==diff.getId()) && (diffKey.get(i).getKeybArea_id() == keyzone.get(c).getId())){
                     flag = true;
                     break;
                 }
@@ -80,7 +80,7 @@ public class DifKeyServiceImpl implements DifKeyService {
             }
             if(flag!=true){
                 DiffKey newD = new DiffKey();
-                newD.setDiff_id(DificultyServiceImpl.getD(id));
+                newD.setDiff_id(DificultyServiceImpl.getD(diff.getId()));
                 newD.setKeybArea_id(keyzone.get(c));
                 diffKeyRepository.save(newD);
             }
@@ -88,7 +88,7 @@ public class DifKeyServiceImpl implements DifKeyService {
             c++;
             h++;
         }
-
+        DificultyServiceImpl.createD(diff);
     }
 
 

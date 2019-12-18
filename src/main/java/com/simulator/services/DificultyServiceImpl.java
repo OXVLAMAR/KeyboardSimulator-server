@@ -32,6 +32,10 @@ public class DificultyServiceImpl implements DificultyService {
         return dificultyRepository.findById(id).orElse(null);
     }
 
+    public static Dificulty createD(Dificulty dificulty) {
+        return dificultyRepository.save(dificulty);
+    }
+
     @Override
     public Dificulty getById(Long id) {
         return dificultyRepository.findById(id).orElse(null);
