@@ -45,6 +45,14 @@ public class UserController {
         }
     }
 
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping (path = {"/updateDif"})
+    public UserKS updateDif(@RequestBody UserKS userKS) {
+            return userService.saveOrUpdate(userKS);
+        }
+
+
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = {"/registration/{login}/{password}"})
     public Long newUser(@PathVariable String login, @PathVariable String password) {
