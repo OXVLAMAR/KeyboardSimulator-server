@@ -37,8 +37,8 @@ public class UserController {
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping
     public UserKS saveOrUpdate(@RequestBody UserKS userKS) {
-        if (userService.equals(userKS.getLogin(), userService.listAll())) {
-            throw new IllegalArgumentException("Логин занят");
+        if ((userService.equals(userKS.getLogin(), userService.listAll()))&&(!userService.getById(userKS.getId()).getLogin().equals(userKS.getLogin()))) {
+            throw  new IllegalArgumentException("Логин занят");
 // return null; тут будет ошибка
         } else {
             return userService.saveOrUpdate(userKS);
