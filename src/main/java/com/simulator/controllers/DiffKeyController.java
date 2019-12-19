@@ -39,8 +39,13 @@ public class DiffKeyController {
 
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(path = "/setdif/{diff}/{keyboardArea}")
-    public Dificulty saveOrUpdate(@PathVariable("diff") Dificulty diff, @PathVariable("keyboardArea") ArrayList<KeybArea> keyboardArea) {
+    @GetMapping(path = "setdif/{diff}/{kArea1}/{kArea2}/{kArea3}/{kArea4}")
+    public Dificulty saveOrUpdate(@PathVariable("diff") Dificulty diff, @PathVariable("kArea1") KeybArea keyboardArea1, @PathVariable("kArea2") KeybArea keyboardArea2,@PathVariable("kArea3") KeybArea keyboardArea3, @PathVariable("kArea4") KeybArea keyboardArea4) {
+        List<KeybArea> keyboardArea = new ArrayList<>();
+        keyboardArea.add(keyboardArea1);
+        keyboardArea.add(keyboardArea2);
+        keyboardArea.add(keyboardArea3);
+        keyboardArea.add(keyboardArea4);
         return  difKeyService.saveOrUpdate(diff,keyboardArea);
     }
 

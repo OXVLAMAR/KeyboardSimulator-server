@@ -46,9 +46,9 @@ public class DifKeyServiceImpl implements DifKeyService {
     }
 
     @Override
-    public Dificulty saveOrUpdate(Dificulty diff, ArrayList<KeybArea> keyzone)
+    public Dificulty saveOrUpdate(Dificulty diff, List<KeybArea> keyzone)
     {
-        ArrayList<DiffKey> diffKey = new ArrayList<>();
+        List<DiffKey> diffKey = new ArrayList<>();
         diffKeyRepository.findAll().forEach(diffKey::add);
         int c = 0;
         Long h = 0L;
