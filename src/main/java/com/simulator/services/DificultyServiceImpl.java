@@ -46,8 +46,7 @@ public class DificultyServiceImpl implements DificultyService {
         return dificultyRepository.save(dificulty);
     }
 
-    @Override
-    public Dificulty delete(Long id) {
+    public static Dificulty delete(Long id) {
         dificultyRepository.deleteById(id);
         return null;
     }

@@ -46,41 +46,39 @@ public class DifKeyServiceImpl implements DifKeyService {
     }
 
     @Override
-    public Dificulty saveOrUpdate(Dificulty diff, List<KeybArea> keyzone)
+    public Dificulty saveOrUpdate(Long diff_id, String title, int max_length,int min_length, int mistakes, int pressing_time,List<KeybArea> keyzone)
     {
         List<DiffKey> diffKey = new ArrayList<>();
         diffKeyRepository.findAll().forEach(diffKey::add);
-        int c = 0;
-        Long h = 0L;
+        int c = 1;
+        Long h = 1L;
         boolean flag = false;
         while (c < diffKey.size()) {
            for (int i =0; i<keyzone.size(); i++)
            {
-               if((diffKey.get(c).getDiff_id() ==diff.getId()) && (diffKey.get(c).getKeybArea_id() == keyzone.get(i).getId())){
+               if((diffKey.get(c).getDiff_id() ==diff_id) && (diffKey.get(c).getKeybArea_id() == keyzone.get(i).getId())){
                    flag = true;
-                   break;
                }
 
            }
-            if((diffKey.get(c).getDiff_id() ==diff.getId())&& (flag!=true)){
+            if((diffKey.get(c).getDiff_id() ==diff_id)&& (flag!=true)){
                 diffKeyRepository.delete(diffKey.get(c));
             }
             flag = false;
             c++;
         }
         c=0;
-        while (h < keyzone.size()) {
+        while (h <= keyzone.size()) {
             for (int i =0; i<diffKey.size(); i++)
             {
-                if((diffKey.get(i).getDiff_id() ==diff.getId()) && (diffKey.get(i).getKeybArea_id() == keyzone.get(c).getId())){
+                if((diffKey.get(i).getDiff_id() ==diff_id) && (diffKey.get(i).getKeybArea_id() == keyzone.get(c).getId())){
                     flag = true;
-                    break;
                 }
 
             }
             if(flag!=true){
                 DiffKey newD = new DiffKey();
-                newD.setDiff_id(DificultyServiceImpl.getD(diff.getId()));
+                newD.setDiff_id(DificultyServiceImpl.getD(diff_id));
                 newD.setKeybArea_id(keyzone.get(c));
                 diffKeyRepository.save(newD);
             }
@@ -88,7 +86,12 @@ public class DifKeyServiceImpl implements DifKeyService {
             c++;
             h++;
         }
-       return DificultyServiceImpl.createD(diff);
+        DificultyServiceImpl.getD(diff_id).setMin_length(min_length);
+        DificultyServiceImpl.getD(diff_id).setMax_length(max_length);
+        DificultyServiceImpl.getD(diff_id).setMax_num_of_mistakes(mistakes);
+        DificultyServiceImpl.getD(diff_id).setPressing_time(pressing_time);
+        DificultyServiceImpl.getD(diff_id).setTitle(title);
+       return DificultyServiceImpl.createD(DificultyServiceImpl.getD(diff_id));
     }
 
 

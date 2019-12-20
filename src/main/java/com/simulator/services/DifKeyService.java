@@ -17,7 +17,7 @@ public interface DifKeyService {
 
     DiffKey delete(Long id);
 
-    Dificulty saveOrUpdate(Dificulty diff, List<KeybArea> keyzone);
+    Dificulty saveOrUpdate(Long diff_id, String title, int max_length,int min_length, int mistakes, int pressing_time,List<KeybArea> keyzone);
 
     List<KeybArea> getKeyboardZone(Long diff_id);
 }

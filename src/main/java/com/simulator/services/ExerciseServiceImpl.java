@@ -133,7 +133,7 @@ public class ExerciseServiceImpl implements ExerciseService {
         Dificulty dif = DificultyServiceImpl.getD(exercise.getDiff_id());
         if (dif.getMin_length() > full.length() ||
                 full.length() > dif.getMax_length()) {
-            throw new IllegalArgumentException("Неверная длина упражнения");
+             throw new IllegalArgumentException("Неверная длина упражнения");
         } else {
             char [] fulltext  = full.toCharArray();
             String zone = " ";
@@ -143,7 +143,7 @@ public class ExerciseServiceImpl implements ExerciseService {
 
             for (int i = 0; i< fulltext.length;i++ ){
                 if (zone.indexOf(fulltext[i])<0) {
-                    throw new IllegalArgumentException("Символ не входит в текущие зоны клавиатуры");
+                   throw new IllegalArgumentException("Символ не входит в текущие зоны клавиатуры");
                 }
             }
         }

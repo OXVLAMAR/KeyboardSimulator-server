@@ -46,9 +46,4 @@ public class DificultyController {
         return dificultyService.create(dificulty);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @DeleteMapping(path = "/{id}")
-    public Dificulty delete(@PathVariable("id") Long id) {
-        return dificultyService.delete(Long.valueOf(id));
-    }
 }

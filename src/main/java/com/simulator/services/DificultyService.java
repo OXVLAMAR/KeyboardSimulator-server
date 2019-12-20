@@ -13,7 +13,6 @@ public interface DificultyService {
 
     Dificulty create(Dificulty difficulty);
 
-    Dificulty delete(Long id);
 
     Dificulty saveOrUpdate(Dificulty difficulty);
 }
